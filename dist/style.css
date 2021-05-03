@@ -1,0 +1,22 @@
+
+
+#content {
+    background: url(images/w2.jpeg);
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-left: 1em;
+    padding-right: 1rem;
+    overflow: hidden;
+  }
+  .weather-container{
+
+      min-height:50vh;
+      width:50%;
+      margin: auto;
+      text-align: center;
+    
+  }
+  
