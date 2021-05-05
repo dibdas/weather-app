@@ -12,30 +12,22 @@
 </head>
 <body>
 
-    <div class = "weather-form-content">
+    <div class = "weather-form-content mb-4">
+      <h1 class="text-center my-4"> Weather App</h1>
+      <form action="#" id="weather-form">
 
-        <div class="bg-dark  weather-container border border-warning" id="weather-form" >
+        <div class="  weather-container "  >
             <div class="form-floating mb-3 mt-4 px-5">
-                 <input type="text" class="form-control" placeholder="enter the name of city" >
+                 <input type="text" name="city" class="form-control" placeholder="enter the name of city">
             </div>
-          <button class="submit">Submit</button>
+         
         </div>
+        </form>
+        
 
-  <div class="fixed top-2 right-8">
-    <input type="checkbox" class="appearance-none toggle-input" id="temperature">
-    <label for="temperature" class="w-20 h-10 relative cursor-pointer block outline-none toggle-label rounded-full p-1 bg-gray-500"></label>
-  </div>
 
     </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="switch-temperature" />
-        <span>Switch between Celsius and Fahrenheit</span>
-      </div>
-
-<label class="switch">
-    <input type="checkbox" checked>
-    <span class="slider round">c</span>
-  </label>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
