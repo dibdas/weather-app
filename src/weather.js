@@ -1,4 +1,6 @@
 
+const card = document.createElement('div');
+card.setAttribute('class', 'card text-center w-50 m-auto');
 
 const API ={
   API_ID:'https://api.openweathermap.org/data/2.5/weather',
@@ -15,14 +17,19 @@ const get_weather=async(city)=>{
     });
 }
 const process_weather_data=(da)=>{
-const obj_div = document.createElement('div');
+const obj_div = document.getElementById('weather-data') || document.createElement('div');
+obj_div.id = 'weather-data'
 const weatherContent = document.querySelector('.weather-form-content');
 const { weather, wind } = da;
 const { pressure,humidity } = da.main;
 let obj_string =`humidity:${humidity}%<br/>weather:${weather[0].description}<br/>
-temp:${da.main.temp}<br/>pressure:${pressure} hpa<br/>wind:${wind.speed}mps<br/>`;
+temp:${da.main.temp}<br/>pressure:${pressure} hpa<br/>wind:${wind.speed}mps<br/> feels_like:${da.main.feels_like}`;
+obj_div.innerHTML=" ";
 obj_div.innerHTML = obj_string;
-weatherContent.appendChild(obj_div);
+if (document.querySelector('#weather-data') !== 'null'){
+  card.appendChild(obj_div)
+  weatherContent.appendChild(card)
+}
 console.log(weather);
 console.log(wind);
 console.log(pressure);
@@ -31,4 +38,14 @@ console.log(da);
 }
 
 get_weather('london')
+const inputlocation = document.querySelector('#weather-form')
+inputlocation.addEventListener('submit',e=>{
+  e.preventDefault();
+  const{city}=inputlocation;
+  get_weather(city.value);
+  inputlocation.reset()
+
+})
+
+
 export default process_weather_data;
