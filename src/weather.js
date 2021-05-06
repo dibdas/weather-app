@@ -5,6 +5,7 @@ const API = {
   API_ID: 'https://api.openweathermap.org/data/2.5/weather',
   KEY: 'ced4960b4f29616c6327cdcc428f0897',
 };
+
 const get_weather = async (city) => { // eslint-disable-line 
   const awaitdata = await fetch(`${API.API_ID}?q=${city}&units=metric&appid=${API.KEY}`, { mode: 'cors' }) // eslint-disable-line 
     .then((response) => response.json())
@@ -42,8 +43,8 @@ const process_weather_data = (data) => { // eslint-disable-line
     }
   });
 };
-
 get_weather('london');
+
 const inputlocation = document.querySelector('#weather-form');
 inputlocation.addEventListener('submit', (e) => {
   e.preventDefault();
