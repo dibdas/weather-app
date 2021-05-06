@@ -21,7 +21,6 @@ const process_weather_data = (data) => { // eslint-disable-line
   const weatherContent = document.querySelector('.weather-form-content');
   const { weather, wind } = data;
   const { pressure, humidity } = data.main;
-
   const e = document.getElementById('sel1');
   let category = 0;
   e.addEventListener('click', () => {
@@ -42,8 +41,9 @@ const process_weather_data = (data) => { // eslint-disable-line
       weatherContent.appendChild(card);
     }
   });
+  e.click();
 };
-get_weather('london');
+get_weather();
 
 const inputlocation = document.querySelector('#weather-form');
 inputlocation.addEventListener('submit', (e) => {
