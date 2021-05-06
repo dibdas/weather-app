@@ -1,6 +1,9 @@
 
 const card = document.createElement('div');
-card.setAttribute('class', 'card text-center w-50 m-auto');
+card.setAttribute('class', 'card bg-dark text-white text-center w-50 m-auto');
+
+
+
 
 const API ={
   API_ID:'https://api.openweathermap.org/data/2.5/weather',
@@ -16,24 +19,35 @@ const get_weather=async(city)=>{
       console.error('Error:', error);
     });
 }
+
 const process_weather_data=(da)=>{
 const obj_div = document.getElementById('weather-data') || document.createElement('div');
 obj_div.id = 'weather-data'
 const weatherContent = document.querySelector('.weather-form-content');
 const { weather, wind } = da;
 const { pressure,humidity } = da.main;
-let obj_string =`humidity:${humidity}%<br/>weather:${weather[0].description}<br/>
-temp:${da.main.temp}<br/>pressure:${pressure} hpa<br/>wind:${wind.speed}mps<br/> feels_like:${da.main.feels_like}`;
+
+const e = document.getElementById("sel1");
+var category= 0;
+e.addEventListener('click',function(){  
+var value = e.options[e.selectedIndex].value;
+ if(value=='F'){
+   category=Math.round(da.main.temp* (9/5) + 32);
+ }
+ else{
+   category=da.main.temp
+ }
+
+let obj_string =`humidity:${humidity}%<br/>weather:${weather[0].description}
+<br/>temperature:${category}<br/>pressure:${pressure} hpa<br/>wind:${wind.speed}mps
+<br/> feels_like:${da.main.feels_like}`;
 obj_div.innerHTML=" ";
 obj_div.innerHTML = obj_string;
 if (document.querySelector('#weather-data') !== 'null'){
   card.appendChild(obj_div)
   weatherContent.appendChild(card)
 }
-console.log(weather);
-console.log(wind);
-console.log(pressure);
-console.log(da);
+})
 
 }
 
