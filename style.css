@@ -22,11 +22,9 @@
   .weather-form-content{
     margin-bottom: 2px;
   }
-  .toogle-label::after{
-    content:'c';
-  }
-  .toggle-input:checked + .toggle-label::after {
-    content: '℉';
-  
-    }
+  .custom-switch .custom-control-label::before {
+    content:'C  F';
+    font-size: 12px;
     
+  }
+  

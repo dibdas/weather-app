@@ -7,7 +7,6 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
@@ -16,6 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather */ \"./src/weather.js\");\n // eslint-disable-line \n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ }),
@@ -24,9 +24,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wea
 /*!************************!*\
   !*** ./src/weather.js ***!
   \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst card = document.createElement('div');\ncard.setAttribute('class', 'card bg-dark text-white text-center w-50 m-auto');\n// const toogle_card = document.getElementById('#toggle-switch')\n// card.appendChild(toggle_card);\n\nconst API = {\n  API_ID: 'https://api.openweathermap.org/data/2.5/weather',\n  KEY: 'ced4960b4f29616c6327cdcc428f0897',\n};\n\nconst get_weather = async (city) => { // eslint-disable-line \n  const awaitdata = await fetch(`${API.API_ID}?q=${city}&units=metric&appid=${API.KEY}`, { mode: 'cors' }) // eslint-disable-line \n    .then((response) => response.json())\n    .then((data) => process_weather_data(data)) // eslint-disable-line \n    .catch((error) => {\n      console.error('Error:', error); // eslint-disable-line \n    });\n};\nconst process_weather_data = (data) => { // eslint-disable-line \n  const obj_div = document.getElementById('weather-data') || document.createElement('div'); // eslint-disable-line \n  obj_div.id = 'weather-data';\n  const weatherContent = document.querySelector('.weather-form-content');\n  const { weather, wind } = data;\n  const { pressure, humidity, feels_like } = data.main;\n  const e = document.getElementById('sel1');\n  let category = 0;\n  e.addEventListener('click', () => {\n    const { value } = e.options[e.selectedIndex];\n    if (value == 'F') { // eslint-disable-line \n      category = Math.round(data.main.temp * (9 / 5) + 32);\n    } else {\n      category = data.main.temp;\n    }\n    const objs = `humidity:${humidity}%<br/>weather:${weather[0].description}\n    <br/>temperature:${category}</br>pressure:${pressure} hpa<br/>wind:${wind.speed}mps\n    <br/> feels_like:${feels_like}<br/><span class=\"lg\">\n    <img src=\"http://openweathermap.org/img/w/${weather[0].icon}.png\"></span><br/>`;\n    obj_div.innerHTML = ' ';\n    obj_div.innerHTML = objs; // eslint-disable-line \n    if (document.querySelector('#weather-data') !== 'null') {\n      card.appendChild(obj_div);\n      //card.appendChild(toggle_card\n      //weatherContent.appendChild(toggle_card)\n      weatherContent.appendChild(card);\n    }\n  });\n  e.click();\n};\nget_weather('london');\n\nconst inputlocation = document.querySelector('#weather-form');\ninputlocation.addEventListener('submit', (e) => {\n  e.preventDefault();\n  const { city } = inputlocation;\n  get_weather(city.value);\n  inputlocation.reset();\n});\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (process_weather_data); // eslint-disable-line \n\n\n//# sourceURL=webpack://weather-app/./src/weather.js?");
+eval("throw new Error(\"Module parse failed: Unexpected keyword 'const' (28:2)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|   const \\n| \\n>   const e = document.getElementById('customSwitch1');\\n|   let category = 0;\\n|   e.addEventListener('change', () => {\");\n\n//# sourceURL=webpack://weather-app/./src/weather.js?");
 
 /***/ })
 
@@ -57,23 +57,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
