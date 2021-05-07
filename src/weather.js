@@ -16,31 +16,33 @@ const get_weather = async (city) => { // eslint-disable-line
       console.error('Error:', error); // eslint-disable-line 
     });
 };
+
 const process_weather_data = (data) => { // eslint-disable-line 
   const obj_div = document.getElementById('weather-data') || document.createElement('div'); // eslint-disable-line 
   obj_div.id = 'weather-data';
   const weatherContent = document.querySelector('.weather-form-content');
   const { weather, wind } = data;
-  const { pressure, humidity, feels_like } = data.main;
-  const e = document.getElementById('sel1');
+  const { pressure, humidity, feels_like } = data.main; //eslint-disable-line
+  const 
+
+  const e = document.getElementById('customSwitch1');
   let category = 0;
-  e.addEventListener('click', () => {
-    const { value } = e.options[e.selectedIndex];
-    if (value == 'F') { // eslint-disable-line 
-      category = Math.round(data.main.temp * (9 / 5) + 32);
-    } else {
+  e.addEventListener('change', () => {
+    const { check } = e;
+    console.log(check)
+    if (check == 'F') { // eslint-disable-line 
       category = data.main.temp;
+    } else {
+      category = Math.round(data.main.temp * (9 / 5) + 32);
     }
-    const objs = `humidity:${humidity}%<br/>weather:${weather[0].description}
+    const objs = `city:${data.name},${data.sys.country}<br/>humidity:${humidity}%<br/>weather:${weather[0].description}
     <br/>temperature:${category}</br>pressure:${pressure} hpa<br/>wind:${wind.speed}mps
-    <br/> feels_like:${feels_like}<br/><span class="lg">
-    <img src="http://openweathermap.org/img/w/${weather[0].icon}.png"></span><br/>`;
+    <br/> feels like:${feels_like}<br/><span class="lg">
+    <img src="http://openweathermap.org/img/w/${weather[0].icon}.png"></span><br/>`; //eslint-disable-line
     obj_div.innerHTML = ' ';
     obj_div.innerHTML = objs; // eslint-disable-line 
     if (document.querySelector('#weather-data') !== 'null') {
       card.appendChild(obj_div);
-      //card.appendChild(toggle_card
-      //weatherContent.appendChild(toggle_card)
       weatherContent.appendChild(card);
     }
   });
@@ -49,6 +51,7 @@ const process_weather_data = (data) => { // eslint-disable-line
 get_weather('london');
 
 const inputlocation = document.querySelector('#weather-form');
+
 inputlocation.addEventListener('submit', (e) => {
   e.preventDefault();
   const { city } = inputlocation;
