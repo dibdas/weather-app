@@ -23,18 +23,16 @@ const process_weather_data = (data) => { // eslint-disable-line
   const weatherContent = document.querySelector('.weather-form-content');
   const { weather, wind } = data;
   const { pressure, humidity, feels_like } = data.main; //eslint-disable-line
-  const 
-
   const e = document.getElementById('customSwitch1');
   let category = 0;
   e.addEventListener('change', () => {
-    const { check } = e;
-    console.log(check)
-    if (check == 'F') { // eslint-disable-line 
+    const { checked } = e;
+    if (checked == false) { // eslint-disable-line 
       category = data.main.temp;
     } else {
       category = Math.round(data.main.temp * (9 / 5) + 32);
     }
+    
     const objs = `city:${data.name},${data.sys.country}<br/>humidity:${humidity}%<br/>weather:${weather[0].description}
     <br/>temperature:${category}</br>pressure:${pressure} hpa<br/>wind:${wind.speed}mps
     <br/> feels like:${feels_like}<br/><span class="lg">
