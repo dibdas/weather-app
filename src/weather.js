@@ -1,6 +1,6 @@
 const card = document.createElement('div');
 card.setAttribute('class', 'card bg-dark text-white text-center w-50 m-auto');
-// const url ='api_key=${API_KEY.GIPHY_KEY}&s=${status}'
+
 
 const API = {
   API_ID: 'https://api.openweathermap.org/data/2.5/weather',
@@ -9,7 +9,7 @@ const API = {
   GIPHY_KEY: 'iO1ed13erOjW4NbbYZqqYs6mNYlvpggR',
 
 };
-// const url = '${API.API_GRIPHY}api_key=${API.GIPHY_KEY}&tag=&rating=g';
+
 
 const get_weather = async (city) => { // eslint-disable-line 
   const awaitdata = await fetch(`${API.API_ID}?q=${city}&units=metric&appid=${API.KEY}`, { mode: 'cors' }) // eslint-disable-line 
@@ -31,6 +31,11 @@ const process_weather_data = (data) => { // eslint-disable-line
   const e = document.getElementById('customSwitch1');
   let category = 0;
   let feels = 0;
+
+  const url =`${API.GIPHY_KEY}&s=${weather}`
+  
+  
+  
   e.addEventListener('change', () => {
     const { checked } = e;
     if (checked == false) { // eslint-disable-line 
@@ -56,13 +61,21 @@ const process_weather_data = (data) => { // eslint-disable-line
 };
 get_weather('london');
 async function getImg(url) {
+  let images;
+  const gang = document.getElementById('#weather-change');
   const response = await fetch(url, { mode: 'cors' })
-    .then((response) => { response.json(); })
-    .then((data) => (data))
+    .then((response) => { response.json()})
+    .then((item) => {(item)
+      console.log(item.data)
+    images=Object.values(item.data.images)
+    gang.setAttribute('style', `background:url(${images[0].url})`);
+  })
     .catch((error) => {
       console.error('Error:', error);
     });
 }
+
+
 
 const inputlocation = document.querySelector('#weather-form');
 
@@ -71,11 +84,8 @@ inputlocation.addEventListener('submit', (e) => {
   const { city } = inputlocation;
   get_weather(city.value);
   inputlocation.reset();
-  const gang = document.getElementById('#weather-change');
-  const u = getImg('https://api.giphy.com/v1/gifs/random?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&tag=&rating=g');
-  console.log(u.images[0].url);
-
-  gang.setAttribute('style', `background:url(${u.images.url})`);
+  getImg(`https://api.giphy.com/v1/gifs/translate?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&s={weather}`)
+  
 });
 
 export default process_weather_data; // eslint-disable-line 
