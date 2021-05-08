@@ -64,12 +64,18 @@ async function getImg(url) {
   let images;
   const gang = document.getElementById('#weather-change');
   const response = await fetch(url, { mode: 'cors' })
-    .then((response) => { response.json()})
-    .then((item) => {(item)
-      console.log(item.data)
-    images=Object.values(item.data.images)
-    gang.setAttribute('style', `background:url(${images[0].url})`);
-  })
+    .then((res) => res.json())
+    //console.log(response)
+    .then((item) => {
+    //console.log(item )
+     console.log(item)
+     const{bitly_gif_url}=item.data.bitly_gif_url;
+    console.log(bitly_gif_url)})
+     
+    //let{images}=Object.values(item.images)
+    //console.log(images)
+    //gang.setAttribute('style', `background:url(${images[0].url})`);
+    
     .catch((error) => {
       console.error('Error:', error);
     });
