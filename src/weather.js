@@ -1,15 +1,15 @@
 const card = document.createElement('div');
 card.setAttribute('class', 'card bg-dark text-white text-center w-50 m-auto');
-//const url ='api_key=${API_KEY.GIPHY_KEY}&s=${status}'
+// const url ='api_key=${API_KEY.GIPHY_KEY}&s=${status}'
 
 const API = {
   API_ID: 'https://api.openweathermap.org/data/2.5/weather',
   KEY: 'ced4960b4f29616c6327cdcc428f0897',
   API_GRIPHY: 'https://api.giphy.com/v1/gifs/random?',
-  GIPHY_KEY:'iO1ed13erOjW4NbbYZqqYs6mNYlvpggR'
+  GIPHY_KEY: 'iO1ed13erOjW4NbbYZqqYs6mNYlvpggR',
 
 };
-const url = '${API.API_GRIPHY}api_key=${API.GIPHY_KEY}&tag=&rating=g'
+// const url = '${API.API_GRIPHY}api_key=${API.GIPHY_KEY}&tag=&rating=g';
 
 const get_weather = async (city) => { // eslint-disable-line 
   const awaitdata = await fetch(`${API.API_ID}?q=${city}&units=metric&appid=${API.KEY}`, { mode: 'cors' }) // eslint-disable-line 
@@ -57,12 +57,11 @@ const process_weather_data = (data) => { // eslint-disable-line
 get_weather('london');
 async function getImg(url) {
   const response = await fetch(url, { mode: 'cors' })
-  .then(response=>{response.json})
-  .then((data)=>(data))
-  .catch((error)=>{
-    console.error('Error:', error);
-  })
-    
+    .then((response) => { response.json(); })
+    .then((data) => (data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 const inputlocation = document.querySelector('#weather-form');
@@ -72,10 +71,10 @@ inputlocation.addEventListener('submit', (e) => {
   const { city } = inputlocation;
   get_weather(city.value);
   inputlocation.reset();
-  const gang= document.querySelector('#weather-change')
-  const u = getImg('https://api.giphy.com/v1/gifs/random?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&tag=&rating=g')
-  console.log(u.images.downsized_large)
-  
+  const gang = document.getElementById('#weather-change');
+  const u = getImg('https://api.giphy.com/v1/gifs/random?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&tag=&rating=g');
+  console.log(u.images[0].url);
+
   gang.setAttribute('style', `background:url(${u.images.url})`);
 });
 
