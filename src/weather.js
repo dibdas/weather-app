@@ -9,7 +9,7 @@ const API = {
   GIPHY_KEY:'iO1ed13erOjW4NbbYZqqYs6mNYlvpggR'
 
 };
-const url = `${API.API_GRIPHY}api_key=${API.GIPHY_KEY}&s=${200}`
+const url = '${API.API_GRIPHY}api_key=${API.GIPHY_KEY}&tag=&rating=g'
 
 const get_weather = async (city) => { // eslint-disable-line 
   const awaitdata = await fetch(`${API.API_ID}?q=${city}&units=metric&appid=${API.KEY}`, { mode: 'cors' }) // eslint-disable-line 
@@ -58,7 +58,7 @@ get_weather('london');
 async function getImg(url) {
   const response = await fetch(url, { mode: 'cors' })
   .then(response=>{response.json})
-  .then((data)=>data)
+  .then((data)=>(data))
   .catch((error)=>{
     console.error('Error:', error);
   })
@@ -71,12 +71,12 @@ inputlocation.addEventListener('submit', (e) => {
   e.preventDefault();
   const { city } = inputlocation;
   get_weather(city.value);
-  const gang= document.querySelector('#weather-change')
-  let u = getImg(url)
-  console.log(gang.images.url)
-  console.log(getImg(url))
-  gang.setAttribute('style', `background:url(${u.images.url})`);
   inputlocation.reset();
+  const gang= document.querySelector('#weather-change')
+  const u = getImg('https://api.giphy.com/v1/gifs/random?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&tag=&rating=g')
+  console.log(u.images.downsized_large)
+  
+  gang.setAttribute('style', `background:url(${u.images.url})`);
 });
 
 export default process_weather_data; // eslint-disable-line 
