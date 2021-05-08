@@ -1,7 +1,6 @@
 const card = document.createElement('div');
 card.setAttribute('class', 'card bg-dark text-white text-center w-50 m-auto');
 
-
 const API = {
   API_ID: 'https://api.openweathermap.org/data/2.5/weather',
   KEY: 'ced4960b4f29616c6327cdcc428f0897',
@@ -28,14 +27,15 @@ const process_weather_data = (data) => { // eslint-disable-line
   const {
     pressure, humidity, feels_like: feelsLike, temp,
   } = data.main;
+  console.log(data)
   const e = document.getElementById('customSwitch1');
   let category = 0;
   let feels = 0;
 
-  const url =`${API.GIPHY_KEY}&s=${weather}`
   
   
   
+  getImg('https://api.giphy.com/v1/gifs/translate?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&s=${weather[0].main}')
   e.addEventListener('change', () => {
     const { checked } = e;
     if (checked == false) { // eslint-disable-line 
@@ -59,18 +59,19 @@ const process_weather_data = (data) => { // eslint-disable-line
   });
   e.click();
 };
+
+
 get_weather('london');
 async function getImg(url) {
   let images;
   const gang = document.getElementById('#weather-change');
   const response = await fetch(url, { mode: 'cors' })
     .then((res) => res.json())
-    //console.log(response)
+    console.log(response)
     .then((item) => {
     //console.log(item )
-     console.log(item)
-     const{bitly_gif_url}=item.data.bitly_gif_url;
-    console.log(bitly_gif_url)})
+     //console.log(item);
+    })
      
     //let{images}=Object.values(item.images)
     //console.log(images)
@@ -90,7 +91,7 @@ inputlocation.addEventListener('submit', (e) => {
   const { city } = inputlocation;
   get_weather(city.value);
   inputlocation.reset();
-  getImg(`https://api.giphy.com/v1/gifs/translate?api_key=iO1ed13erOjW4NbbYZqqYs6mNYlvpggR&s={weather}`)
+  
   
 });
 
