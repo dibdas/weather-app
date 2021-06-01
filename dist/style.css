@@ -1,0 +1,30 @@
+
+
+.weather-form-content {
+    background: url(../dist/images/w2.jpeg);
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-left: 1em;
+    padding-right: 1rem;
+    overflow: hidden;
+  }
+  .weather-container{
+
+      min-height:10vh;
+      width:50%;
+      margin: auto;
+      text-align: center;
+    
+  }
+  .weather-form-content{
+    margin-bottom: 2px;
+  }
+  .custom-switch .custom-control-label::before {
+    content:'C  F';
+    font-size: 12px;
+    
+  }
+  
